@@ -1,4 +1,6 @@
-﻿using VeilleTech.DesignPattern.Practices.CreationalDesignPattern.AbstractFactoryPattern;
+﻿using System;
+using VeilleTech.DesignPattern.Practices.BehavioralDesignPattern.ObserverPattern;
+using VeilleTech.DesignPattern.Practices.CreationalDesignPattern.AbstractFactoryPattern;
 using VeilleTech.DesignPattern.Practices.CreationalDesignPattern.FactoryMethodPattern;
 using VeilleTech.DesignPattern.Practices.CreationalDesignPattern.SimpleFactoryPattern;
 using VeilleTech.DesignPattern.Practices.CreationalDesignPattern.SingletonDesignPattern;
@@ -58,8 +60,9 @@ petCat.Action();
 Console.ReadLine();
 #endregion
 
+
 #region Run this region to check Singleton Pattern Demo
-Console.WriteLine("***Singleton Pattern Demo***\n\n");
+Console.WriteLine("--------------------------- Singleton Pattern Demo ----------------------------");
 Console.WriteLine("Trying to create instance s1.\n\n");
 Singleton s1 = Singleton.Instance;
 Console.WriteLine("Trying to create instance s2.\n\n");
@@ -99,6 +102,33 @@ process2.Start();
 
 process1.Join();
 process2.Join();
+
+Console.ReadLine();
+#endregion
+
+
+#region Run this region to check Observer Pattern Demo
+Console.WriteLine("--------------------------- Observer Pattern Demo ----------------------------");
+//We have 3 observers-2 of them are ObserverType1, 1 of them is of ObserverType2
+IObserver myObserver1 = new ObserverType1("DB Subscriber 1");
+IObserver myObserver2 = new ObserverType1("DB Subscriber 2");
+IObserver myObserver3 = new ObserverType2("DB Subscriber 3");
+Subject subject = new Subject();
+//Registering the observers-DB Users
+subject.Register(myObserver1);
+subject.Register(myObserver2);
+subject.Register(myObserver3);
+Console.WriteLine("Updating Flag = 5 \n");
+subject.Flag = 5;
+//Unregistering an observer(DB Subscriber 1))
+subject.Unregister(myObserver1);
+//No notification this time DB Subscriber 1. Since it is unregistered.
+Console.WriteLine("\nUpdating Flag = 50 \n");
+subject.Flag = 50;
+//DB Subscriber 1 is registering himself again
+subject.Register(myObserver1);
+Console.WriteLine("\nUpdating Flag = 100 \n");
+subject.Flag = 100;
 
 Console.ReadLine();
 #endregion
