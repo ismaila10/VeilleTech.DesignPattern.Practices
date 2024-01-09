@@ -32,22 +32,27 @@
         // Private static readonly SingletonTS instance=new SingletonTS();
         // We are using volatile to ensure that assignment to the instance variable finishes before it’s access.
         private static volatile SingletonTS? instance;
-        private static object lockObject = new Object();
+        private static readonly object lockObject = new Object();
         private SingletonTS() { Console.WriteLine("Instantiating thread-safe inside the private constructor.\n\n"); }
-        public static SingletonTS Instance
+        public static SingletonTS Instance(string value)
         {
-            get
+            if (instance == null)
             {
-                if (instance == null)
+                lock (lockObject)
                 {
-                    lock (lockObject)
+                    if (instance == null)
                     {
-                        if (instance == null)
-                            instance = new SingletonTS();
+                        instance = new SingletonTS();
+                        instance.Value = value;
                     }
+                        
+
                 }
-                return instance;
             }
+            return instance;
         }
+
+        // We'll use this property to prove that our Singleton really works.
+        public string Value { get; set; }
     }
 }
