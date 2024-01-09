@@ -1,6 +1,7 @@
 ﻿using VeilleTech.DesignPattern.Practices.CreationalDesignPattern.AbstractFactoryPattern;
 using VeilleTech.DesignPattern.Practices.CreationalDesignPattern.FactoryMethodPattern;
 using VeilleTech.DesignPattern.Practices.CreationalDesignPattern.SimpleFactoryPattern;
+using VeilleTech.DesignPattern.Practices.CreationalDesignPattern.SingletonDesignPattern;
 
 
 #region Run this region to check Simple Factory Pattern Demo
@@ -21,6 +22,8 @@ if (!int.TryParse(userInput, out int number))
 preferedtype = simpleFactory.CreateAnimal(number);
 preferedtype.Speak();
 preferedtype.Action();
+
+Console.ReadLine();
 #endregion
 
 
@@ -32,6 +35,8 @@ IAnimal aCat = catFactory.CreateAnimal();
 Console.WriteLine("Cat Animal created with its features !");
 
 IAnimal aCat1 = catFactory.MakeAnimal();
+
+Console.ReadLine();
 #endregion
 
 
@@ -49,5 +54,26 @@ IAnimalsFactory petAnimalFactory = new PetAnimalFactory();
 ICat petCat = petAnimalFactory.GetCat();
 petCat.Speak();
 petCat.Action();
+
+Console.ReadLine();
+#endregion
+
+#region Run this region to check Singleton Pattern Demo
+Console.WriteLine("***Singleton Pattern Demo***\n\n");
+Console.WriteLine("Trying to create instance s1.\n\n");
+Singleton s1 = Singleton.Instance;
+Console.WriteLine("Trying to create instance s2.\n\n");
+Singleton s2 = Singleton.Instance;
+if (s1 == s2)
+{
+    Console.WriteLine("Only one instance exists.\n\n");
+}
+else
+{
+    Console.WriteLine("Different instances exist.\n\n");
+}
+Console.WriteLine("***Thread-Safe Singleton Pattern Demo***\n\n");
+SingletonTS sts = SingletonTS.Instance;
+
 Console.ReadLine();
 #endregion
