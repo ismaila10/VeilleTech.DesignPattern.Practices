@@ -3,7 +3,9 @@
     public class Subject: ISubject
     {
         List<IObserver> observerList = new List<IObserver>();
+
         private int flag;
+
         public int Flag
         {
             get

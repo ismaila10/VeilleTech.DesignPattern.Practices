@@ -2,15 +2,16 @@
 {
     public class ObserverType2 : IObserver
     {
-        string nameOfObserver;
-        public ObserverType2(String name)
+        string NameOfObserver;
+
+        public ObserverType2(string name)
         {
-            this.nameOfObserver = name;
+            this.NameOfObserver = name;
         }
 
         public void Update(int i)
         {
-            Console.WriteLine($"{nameOfObserver} notified: DB flag Value in Subject at present: {i} \n");
+            Console.WriteLine($"{NameOfObserver} notified: DB flag Value in Subject at present: {i} \n");
         }
     }
 }

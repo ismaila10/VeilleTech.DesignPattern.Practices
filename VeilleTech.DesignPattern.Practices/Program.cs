@@ -1,5 +1,6 @@
 ﻿using System;
 using VeilleTech.DesignPattern.Practices.BehavioralDesignPattern.ObserverPattern;
+using VeilleTech.DesignPattern.Practices.BehavioralDesignPattern.StrategyPattern;
 using VeilleTech.DesignPattern.Practices.CreationalDesignPattern.AbstractFactoryPattern;
 using VeilleTech.DesignPattern.Practices.CreationalDesignPattern.FactoryMethodPattern;
 using VeilleTech.DesignPattern.Practices.CreationalDesignPattern.SimpleFactoryPattern;
@@ -24,26 +25,28 @@ if (!int.TryParse(userInput, out int number))
 preferedtype = simpleFactory.CreateAnimal(number);
 preferedtype.Speak();
 preferedtype.Action();
+Console.WriteLine("Appuyer sur la touche entrer pour passer à la démo d'un autre pattern");
 
 Console.ReadLine();
 #endregion
 
 
 #region Run this region to check Factory Method Pattern Demo
-Console.WriteLine("--------------------------- Factory Method Pattern Demo ----------------------------");
+Console.WriteLine("\n --------------------------- Factory Method Pattern Demo ----------------------------");
 IAnimalFactory catFactory = new CatFactory();
 Console.WriteLine("CatFactory can create only Cat Animals !");
 IAnimal aCat = catFactory.CreateAnimal();
 Console.WriteLine("Cat Animal created with its features !");
 
 IAnimal aCat1 = catFactory.MakeAnimal();
+Console.WriteLine("Appuyer sur la touche entrer pour passer à la démo d'un autre pattern");
 
 Console.ReadLine();
 #endregion
 
 
 #region Run this region to check Abstract Factory Method Pattern Demo
-Console.WriteLine("--------------------------- Abstract Factory Method Pattern Demo ----------------------------");
+Console.WriteLine("\n --------------------------- Abstract Factory Method Pattern Demo ----------------------------");
 Console.WriteLine("!!!!!! Making a wild tiger through WildAnimal !!!!!! \n");
 IAnimalsFactory wildAnimalFactory = new WildAnimalFactory();
 ITiger wildTiger = wildAnimalFactory.GetTiger();
@@ -56,27 +59,28 @@ IAnimalsFactory petAnimalFactory = new PetAnimalFactory();
 ICat petCat = petAnimalFactory.GetCat();
 petCat.Speak();
 petCat.Action();
+Console.WriteLine("Appuyer sur la touche entrer pour passer à la démo d'un autre pattern");
 
 Console.ReadLine();
 #endregion
 
 
 #region Run this region to check Singleton Pattern Demo
-Console.WriteLine("--------------------------- Singleton Pattern Demo ----------------------------");
-Console.WriteLine("Trying to create instance s1.\n\n");
+Console.WriteLine("\n --------------------------- Singleton Pattern Demo ----------------------------");
+Console.WriteLine("Trying to create instance s1.\n");
 Singleton s1 = Singleton.Instance;
-Console.WriteLine("Trying to create instance s2.\n\n");
+Console.WriteLine("Trying to create instance s2.\n");
 Singleton s2 = Singleton.Instance;
 if (s1 == s2)
 {
-    Console.WriteLine("Only one instance exists.\n\n");
+    Console.WriteLine("Only one instance exists.\n");
 }
 else
 {
-    Console.WriteLine("Different instances exist.\n\n");
+    Console.WriteLine("Different instances exist.\n");
 }
 
-Console.WriteLine("***Thread-Safe Singleton Pattern Demo***\n\n");
+Console.WriteLine("***Thread-Safe Singleton Pattern Demo***\n");
 Console.WriteLine(
                 "{0}\n{1}\n\n{2}\n",
                 "If you see the same value, then singleton was reused (yay!)",
@@ -102,13 +106,14 @@ process2.Start();
 
 process1.Join();
 process2.Join();
+Console.WriteLine("Appuyer sur la touche entrer pour passer à la démo d'un autre pattern");
 
 Console.ReadLine();
 #endregion
 
 
 #region Run this region to check Observer Pattern Demo
-Console.WriteLine("--------------------------- Observer Pattern Demo ----------------------------");
+Console.WriteLine("\n --------------------------- Observer Pattern Demo ----------------------------");
 //We have 3 observers-2 of them are ObserverType1, 1 of them is of ObserverType2
 IObserver myObserver1 = new ObserverType1("DB Subscriber 1");
 IObserver myObserver2 = new ObserverType1("DB Subscriber 2");
@@ -129,6 +134,29 @@ subject.Flag = 50;
 subject.Register(myObserver1);
 Console.WriteLine("\nUpdating Flag = 100 \n");
 subject.Flag = 100;
+Console.WriteLine("Appuyer sur la touche entrer pour passer à la démo d'un autre pattern");
+
+Console.ReadLine();
+#endregion
+
+
+#region Run this region to check Strategy Pattern Demo
+Console.WriteLine("\n --------------------------- Strategy Pattern Demo ----------------------------");
+// The client code picks a concrete strategy and passes it to the
+// context. The client should be aware of the differences between
+// strategies in order to make the right choice.
+var context = new Context();
+
+Console.WriteLine("Client: Strategy is set to normal sorting.");
+context.SetStrategy(new ConcreteStrategyA());
+context.DoSomeBusinessLogic();
+
+Console.WriteLine();
+
+Console.WriteLine("Client: Strategy is set to reverse sorting.");
+context.SetStrategy(new ConcreteStrategyB());
+context.DoSomeBusinessLogic();
+Console.WriteLine("Appuyer sur la touche entrer pour passer à la démo d'un autre pattern");
 
 Console.ReadLine();
 #endregion
